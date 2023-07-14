@@ -9,7 +9,7 @@
 # #
 # #
 
-FROM docker.io/library/node:14-alpine@sha256:dc92f36e7cd917816fa2df041d4e9081453366381a00f40398d99e9392e78664 AS build_node_modules
+FROM docker.io/library/node:18-alpine@sha256:bf6c61feabc1a1bd565065016abe77fa378500ec75efa67f5b04e5e5c4d447cd AS build_node_modules
 
 # Copy Web UI
 COPY src/ /app/
@@ -18,7 +18,7 @@ RUN npm ci --production
 
 # Copy build result to a new image.
 # This saves a lot of disk space.
-FROM docker.io/library/node:14-alpine@sha256:dc92f36e7cd917816fa2df041d4e9081453366381a00f40398d99e9392e78664
+FROM docker.io/library/node:18-alpine@sha256:bf6c61feabc1a1bd565065016abe77fa378500ec75efa67f5b04e5e5c4d447cd
 COPY --from=build_node_modules /app /app
 
 # Move node_modules one directory up, so during development
@@ -34,7 +34,7 @@ RUN mv /app/node_modules /node_modules
 RUN npm i -g nodemon
 
 # Install Linux packages
-RUN apk add -U --no-cache \
+RUN apk add --no-cache \
   ip6tables iptables \
   wireguard-tools \
   dumb-init
