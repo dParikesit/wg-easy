@@ -109,11 +109,19 @@ class API {
     });
   }
 
-  async updateClientAddress({ clientId, address }) {
+  async updateClientAddressIPv4({ clientId, addressIPv4 }) {
     return this.call({
       method: 'put',
-      path: `/wireguard/client/${clientId}/address/`,
-      body: { address },
+      path: `/wireguard/client/${clientId}/addressIPv4/`,
+      body: { addressIPv4 },
+    });
+  }
+
+  async updateClientAddressIPv6({ clientId, addressIPv6 }) {
+    return this.call({
+      method: 'put',
+      path: `/wireguard/client/${clientId}/addressIPv6/`,
+      body: { addressIPv6 },
     });
   }
 

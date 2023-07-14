@@ -38,8 +38,10 @@ new Vue({
     clientCreateName: '',
     clientEditName: null,
     clientEditNameId: null,
-    clientEditAddress: null,
-    clientEditAddressId: null,
+    clientEditAddressIPv4: null,
+    clientEditAddressIPv6: null,
+    clientEditAddressIdIPv4: null,
+    clientEditAddressIdIPv6: null,
     qrcode: null,
 
     currentRelease: null,
@@ -236,8 +238,13 @@ new Vue({
         .catch(err => alert(err.message || err.toString()))
         .finally(() => this.refresh().catch(console.error));
     },
-    updateClientAddress(client, address) {
-      this.api.updateClientAddress({ clientId: client.id, address })
+    updateClientAddressIPv4(client, addressIPv4) {
+      this.api.updateClientAddressIPv4({ clientId: client.id, addressIPv4 })
+        .catch(err => alert(err.message || err.toString()))
+        .finally(() => this.refresh().catch(console.error));
+    },
+    updateClientAddressIPv6(client, addressIPv6) {
+      this.api.updateClientAddressIPv6({ clientId: client.id, addressIPv6 })
         .catch(err => alert(err.message || err.toString()))
         .finally(() => this.refresh().catch(console.error));
     },
