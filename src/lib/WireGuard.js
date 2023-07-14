@@ -95,7 +95,7 @@ module.exports = class WireGuard {
 [Interface]
 PrivateKey = ${config.server.privateKey}
 Address = ${config.server.addressIPv4}/32, ${config.server.addressIPv6}/128
-ListenPort = 51820
+ListenPort = ${WG_PORT}
 `;
 
     if (ENFORCE_WG_ALLOWED_IPS) {
